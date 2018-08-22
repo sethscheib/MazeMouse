@@ -1,10 +1,11 @@
 let population;
-let targetN;
+let target;
+let genNum = 1;
 
 function setup() {
     createCanvas(800, 800);
     population = new Population();
-    targetN = createVector(width/2, 10);
+    target = createVector(width-50, height-50);
 }
 
 function draw() {
@@ -13,13 +14,16 @@ function draw() {
     push();
     fill(255);
     rectMode(CENTER);
-    rect(targetN.x, targetN.y, width, 20);
+    ellipse(target.x, target.y, 20);
     pop();
 
     population.run();
 
-    //if(population.count == population.mice[0].dna.lifespan){
-    //    population.eval();
-    //    population.select();
-    //}
+    if(population.count >= population.mice[0].dna.lifespan){
+        population.count = 0;
+        population.eval();
+        population.select();
+        genNum++;
+    }
+    text("Gen: "+genNum, 50, 20);
 }

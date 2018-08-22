@@ -5,7 +5,7 @@ function DNA(genes) {
         this.genes = [];   
         for(let i=0; i<this.lifespan; i++){
             this.genes[i] = createVector(random(-1, 1), random(-1, 1));
-            this.genes[i] = this.genes[i].mult(.05);
+            this.genes[i] = this.genes[i].setMag(.1);
         }
     }
 
@@ -17,5 +17,14 @@ function DNA(genes) {
             else newgenes[i] = partner.genes[i];
         }
         return new DNA(newgenes);
+    }
+
+    this.mutation = function() {
+        for(let i=0; i<this.genes.length; i++){
+            if(random() < .01){
+                this.genes[i] = createVector(random(), random());
+                this.genes[i].setMag(.1);
+            }
+        }
     }
 }

@@ -47,7 +47,9 @@ function Population() {
       for (var i = 0; i < this.popsize; i++) {
         this.mice[i].update(this.count);
         this.mice[i].show();
-        this.count++;
       }
+      this.count++;
+      fill(25);
+      text(this.count, 20, 20);
     }
   }
