@@ -1,14 +1,16 @@
-function Mouse(lifespan) {
+function Mouse(dna) {
     this.pos = createVector(width/2, height/2);
     this.vel = createVector();
     this.acc = createVector();
     this.body = new tri();
     this.color = color(random()*255, random()*255, random()*255);
 
-    this.genes = [];
-    for(let i=0; i<lifespan; i++){
-        this.genes[i] = createVector(random(-1, 1), random(-1, 1));
-        this.genes[i] = this.genes[i].mult(.05);
+    if(dna) this.dna = dna;
+    else this.dna = new DNA();
+    
+    this.calcFitness = function() {
+        let d = dist(this.pos.x, this.pos.y, width/2, height/2);
+        this.fitness = map(d, 0, width, width, 0);
     }
 
     this.applyForce = function(force) {
@@ -16,7 +18,7 @@ function Mouse(lifespan) {
     }
 
     this.update = function(count) {
-        this.applyForce(this.genes[count]);
+        this.applyForce(this.dna.genes[count]);
         count++;
 
         this.vel.add(this.acc);
