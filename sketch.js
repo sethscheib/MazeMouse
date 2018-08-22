@@ -1,15 +1,22 @@
 let population;
 let target;
 let genNum = 1;
+let obs = [];
 
 function setup() {
     createCanvas(800, 800);
     population = new Population();
     target = createVector(width-50, height-50);
+    obs.push(new Obstical(90, 0, 10, 50));
+    obs.push(new Obstical(0, 140, 150, 10));
 }
 
 function draw() {
     background(51);
+
+    for(let i=0; i<obs.length; i++){
+        obs[i].show();
+    }
 
     push();
     fill(255);
