@@ -7,8 +7,11 @@ function setup() {
     createCanvas(800, 800);
     population = new Population();
     target = createVector(width-50, height-50);
-    obs.push(new Obstical(90, 0, 10, 50));
-    obs.push(new Obstical(0, 140, 150, 10));
+    obs.push(new Obstical(5, 2, 5, 5));
+    obs.push(new Obstical(2, 5, 5, 5));
+    obs.push(new Obstical(0, 7, 5, 7));
+    obs.push(new Obstical(5, 3, 8, 3));
+
 }
 
 function draw() {

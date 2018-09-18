@@ -29,7 +29,6 @@ function Mouse(dna) {
         }
 
         this.applyForce(this.dna.genes[count]);
-        count++;
 
         if(!this.completed && !this.crashed){
             this.vel.add(this.acc);
@@ -43,9 +42,17 @@ function Mouse(dna) {
         }
 
         for(let i=0; i<obs.length; i++){
-            if(this.pos.x > obs[i].x && this.pos.x < obs[i].x+obs[i].w && 
-                this.pos.y > obs[i].y && this.pos.y < obs[i].y+obs[i].h) {
-                    this.crashed = true;
+            if(obs[i].vert){
+                if(this.pos.x > obs[i].x && this.pos.x < obs[i].x+obs[i].l && 
+                    this.pos.y > obs[i].y && this.pos.y < obs[i].y+obs[i].w) {
+                        this.crashed = true;
+                }
+            }
+            else {
+                if(this.pos.x > obs[i].x && this.pos.x < obs[i].x+obs[i].w && 
+                    this.pos.y > obs[i].y && this.pos.y < obs[i].y+obs[i].l) {
+                        this.crashed = true;
+                }
             }
         }
     }
