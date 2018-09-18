@@ -1,5 +1,5 @@
 function DNA(genes) {
-    this.lifespan = 300;
+    this.lifespan = 500;
     if(genes) this.genes = genes; 
     else{
         this.genes = [];   

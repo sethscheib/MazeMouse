@@ -14,7 +14,7 @@ function Mouse(dna) {
         let d = dist(this.pos.x, this.pos.y, target.x, target.y);
         this.fitness = map(d, 0, width, width, 0);
 
-        if(this.completed) this.fitness *= 5;
+        if(this.completed) this.fitness *= 10;
         if(this.crashed) this.fitness /= 5;
     }
 
@@ -29,7 +29,6 @@ function Mouse(dna) {
         }
 
         this.applyForce(this.dna.genes[count]);
-        count++;
 
         if(!this.completed && !this.crashed){
             this.vel.add(this.acc);
@@ -40,7 +39,22 @@ function Mouse(dna) {
         if(this.pos.x >= width || this.pos.x <= 0 || 
             this.pos.y >= height || this.pos.y <= 0) {
                 this.crashed = true;
+        }
+
+        for(let i=0; i<obs.length; i++){
+            if(obs[i].vert){
+                if(this.pos.x > obs[i].x && this.pos.x < obs[i].x+obs[i].l && 
+                    this.pos.y > obs[i].y && this.pos.y < obs[i].y+obs[i].w) {
+                        this.crashed = true;
+                }
             }
+            else {
+                if(this.pos.x > obs[i].x && this.pos.x < obs[i].x+obs[i].w && 
+                    this.pos.y > obs[i].y && this.pos.y < obs[i].y+obs[i].l) {
+                        this.crashed = true;
+                }
+            }
+        }
     }
 
     this.show = function() {
