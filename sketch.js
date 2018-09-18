@@ -7,15 +7,19 @@ function setup() {
     createCanvas(800, 800);
     population = new Population();
     target = createVector(width-50, height-50);
-    obs.push(new Obstical(5, 2, 5, 5));
-    obs.push(new Obstical(2, 5, 5, 5));
-    obs.push(new Obstical(0, 7, 5, 7));
-    obs.push(new Obstical(5, 3, 8, 3));
-
+    obs.push(new Obstical(2, 0, 2, 2));
 }
 
 function draw() {
     background(51);
+
+    for(let i=104; i<=width; i+=100){
+        rect(i, 0, 1, height);
+    }
+
+    for(let i=104; i<=height; i+=100){
+        rect(0, i, width, 1);
+    }
 
     for(let i=0; i<obs.length; i++){
         obs[i].show();
